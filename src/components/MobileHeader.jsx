@@ -3,19 +3,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { BarItem } from "./Bar";
-// import {
-//   LayoutDashboard,
-//   Gauge,
-//   ClipboardCheck,
-//   NotebookPen,
-//   Import,
-//   BookCheck,
-// } from "lucide-react";
+import {
+  BookCheck,
+  LayoutDashboard,
+  Gauge,
+  ClipboardCheck,
+  NotebookPen,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const MobileHeader = () => {
   const mobileMenuRef = useRef();
-
   const [showMobileMainDropdown, setShowMobileMainDropdown] = useState(false);
 
   useEffect(() => {
@@ -43,10 +41,12 @@ const MobileHeader = () => {
         className="flex items-center gap-1 cursor-pointer"
         onClick={() => navigate("/")}
       >
-       
-        <span className="ml-4 font-semibold text-gray-700 text-xl">
-          To Do App
-        </span>
+        <div className="flex items-center gap-1 p-3" onClick={()=>navigate("/")}>
+          <BookCheck size={30} />
+          <span className="ml-4 font-semibold text-gray-700 text-xl">
+            Do It
+          </span>
+        </div>
       </div>
       <div className="flex relative">
         <div className="lg:hidden flex items-center" ref={mobileMenuRef}>
@@ -67,22 +67,22 @@ const MobileHeader = () => {
             <div className="absolute dropdown top-full right-[5%] p-2 mt-2 bg-white border border-gray-300 rounded-md shadow-xl w-52 z-50 h-auto">
               <ul className="flex flex-col gap-1 justify-center">
                 <BarItem
-                  
+                  icon={<LayoutDashboard size={20} />}
                   text={"Tasks"}
                   path={"/"}
                 />
                 <BarItem
-                  
+                  icon={<Gauge size={20} />}
                   text={"Important"}
                   path={"/important"}
                 />
                 <BarItem
-                  
+                  icon={<ClipboardCheck size={20} />}
                   text={"Completed"}
                   path={"/completed"}
                 />
                 <BarItem
-                  
+                  icon={<NotebookPen size={20} />}
                   text={"ToDo"}
                   path={"/todo"}
                 />

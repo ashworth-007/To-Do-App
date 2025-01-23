@@ -1,7 +1,14 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { LayoutDashboard, Gauge, ClipboardCheck, NotebookPen } from "lucide-react";
+import {
+  LayoutDashboard,
+  Gauge,
+  ClipboardCheck,
+  NotebookPen,
+  Import,
+} from "lucide-react";
 import Bar, { BarItem } from "./components/Bar";
 import Todo from "./pages/Todo";
 import Important from "./pages/Important";
@@ -10,6 +17,7 @@ import MobileHeader from "./components/MobileHeader";
 
 const App = () => {
   const mobileMenuRef = useRef();
+
   const [showMobileMainDropdown, setShowMobileMainDropdown] = useState(false);
 
   useEffect(() => {
@@ -31,34 +39,32 @@ const App = () => {
   }, [showMobileMainDropdown]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Horizontal Bar (Top Bar) */}
-      <div className="w-full bg-gray-200 shadow-md sm:block hidden">
-        <div className="flex justify-between items-center p-4">
-          <div className="font-semibold text-gray-700 text-2xl">To Do App</div>
-          <div className="flex space-x-6">
-            <BarItem
-              text={"Tasks"}
-              path={"/"}
-            />
-            <BarItem
-              text={"Important"}
-              path={"/important"}
-            />
-            <BarItem
-              text={"Completed"}
-              path={"/completed"}
-            />
-            <BarItem
-              text={"ToDo"}
-              path={"/todo"}
-            />
-          </div>
-        </div>
+    <div className="flex">
+      <div className="hidden sm:block sticky top-0 h-screen overflow-y-auto w-64 bg-gray-200">
+        <Bar>
+          <BarItem
+            icon={<LayoutDashboard size={20} />}
+            text={"Tasks"}
+            path={"/"}
+          />
+          <BarItem
+            icon={<Gauge size={20} />}
+            text={"Important"}
+            path={"/important"}
+          />
+          <BarItem
+            icon={<ClipboardCheck size={20} />}
+            text={"Completed"}
+            path={"/completed"}
+          />
+          <BarItem
+            icon={<NotebookPen size={20} />}
+            text={"ToDo"}
+            path={"/todo"}
+          />
+        </Bar>
       </div>
-
-      {/* Main Content Area */}
-      <div className="flex-1 p-6 overflow-y-auto w-full">
+      <div className="flex-1 p-6 overflow-y-auto w-full min-h-screen">
         <MobileHeader />
         <Routes>
           <Route path="/" element={<Home />} />
